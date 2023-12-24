@@ -1,6 +1,6 @@
 import { ImageAnnotatorClient } from '@google-cloud/vision';
 
-const sampleOcrData= `บัตรประจำตัวประชาชน Thai National ID Card\n1 8199 00086 00 8\nเลขประจำตัวประชาชน\nIdentification Number\nชื่อตัวและชื่อสกุล นาย ณัฐพล ชนะกุล\nName Mr. Nadtapol\nLast name Chanakun\nเกิดวันที่ 12 ธ.ค. 2532\nDate of Birth 12 Dec. 1989\nศาสนา พุทธ\nที่อยู่ 33 หมู่ที่ 6 ต.ปกาสัย อ.เหนือคลอง\nจ.กระบี\n6 ม.ค. 2559\nวันออกบัตร\n8 Jan. 2016\nDate of issue\nร้อยตำรวจโท - 11 ธ.ค. 2557\n(อาทิตย์ บุญญะโสภัต)\nวันบัตรหมดอายุ\n11 Dec. 2024\nDate of Expiry.\nเจ้าพนักงานออกบัตร\n180\n170\n160\n150.\n180\n170\n160\n8108-06-01061049`;
+const sampleOcrData = `บัตรประจำตัวประชาชน Thai National ID Card\n1 8199 00086 00 8\nเลขประจำตัวประชาชน\nIdentification Number\nชื่อตัวและชื่อสกุล นาย ณัฐพล ชนะกุล\nName Mr. Nadtapol\nLast name Chanakun\nเกิดวันที่ 12 ธ.ค. 2532\nDate of Birth 12 Dec. 1989\nศาสนา พุทธ\nที่อยู่ 33 หมู่ที่ 6 ต.ปกาสัย อ.เหนือคลอง\nจ.กระบี\n6 ม.ค. 2559\nวันออกบัตร\n8 Jan. 2016\nDate of issue\nร้อยตำรวจโท - 11 ธ.ค. 2557\n(อาทิตย์ บุญญะโสภัต)\nวันบัตรหมดอายุ\n11 Dec. 2024\nDate of Expiry.\nเจ้าพนักงานออกบัตร\n180\n170\n160\n150.\n180\n170\n160\n8108-06-01061049`;
 
 async function detectText(imagePath) {
     try {
@@ -13,7 +13,7 @@ async function detectText(imagePath) {
         const detected = detections[0].description;
         // console.log(detected);
         const structured = structureOCRData(detected);
-        console.log('returned data:', structured);
+        console.log('structured data:', structured);
         return structured;
 
     } catch (error) {
@@ -49,7 +49,7 @@ function structureOCRData(ocrData) {
             structuredData.dateOfExpiry = lines[i - 1].trim();
         }
 
-        if (line.includes('issue' || 'Issue')) {
+        if (line.includes('Date of Issue')) {
             structuredData.dateOfIssue = lines[i - 1].trim();
         }
     }
