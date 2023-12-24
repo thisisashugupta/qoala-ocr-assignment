@@ -37,21 +37,19 @@ export default function App() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-black text-white">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 pb-6 pt-8">
-          Qoala OCR Assignment
-        </p>
-        <div className="flex flex-col w-full items-center justify-center">
-          <form className='space-x-4' onSubmit={handleSubmit}>
-            <input className='border-2 border-white p-2 rounded-lg' name='image' onChange={handleFileChange} type="file" accept="image/*" />
-            <button className='border-2 border-white p-2 rounded-lg' type="submit" disabled={!file || uploading}>
-              {uploading ? "Uploading..." : "Upload"}
-            </button>
-          </form>
-        </div>
-        <div>JSON Data: {JSON.stringify(data)}</div>
+    <main className="flex min-h-screen flex-col items-center justify-around p-24 bg-black text-white">
+      <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 pb-6 pt-8">
+        Qoala OCR Assignment
+      </p>
+      <div className="flex flex-col w-full items-center justify-center">
+        <form className='space-x-4' onSubmit={handleSubmit}>
+          <input className='border-2 border-white p-2 rounded-lg' name='image' onChange={handleFileChange} type="file" accept="image/*" />
+          <button className='border-2 border-white p-2 rounded-lg' type="submit" disabled={!file || uploading}>
+            {uploading ? "Uploading..." : "Upload"}
+          </button>
+        </form>
       </div>
+      {data && <pre className='border-2 border-white py-4 px-6 rounded-lg w-full max-w-5xl'>JSON Data: {JSON.stringify(data, null, 4)}</pre>}
     </main>
   )
 }
