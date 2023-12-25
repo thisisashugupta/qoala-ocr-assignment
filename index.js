@@ -2,7 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import multer from 'multer';
-import detectText from './utils/vision.js';
+// import detectText from './utils/vision.js';
+import { getJsonFromGemini } from './utils/gemini.js';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
@@ -20,10 +21,9 @@ mongoose.set("strictQuery", true);
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const uploadPath = path.join(__dirname, 'uploads');
-        console.log("uploadPath:", uploadPath);
+        console.log("file uploaded at", uploadPath);
         fs.mkdirSync(uploadPath, { recursive: true });
         cb(null, uploadPath);
-        console.log("file uploaded.");
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
@@ -49,20 +49,20 @@ async function handlePostRequest(req, res) {
             return res.status(400).json({ error: 'No image uploaded. Retry with uploading an image.' });
         }
 
-        // detect text from uploaded image
-        const receivedText = await detectText(imageFile.path);
-        // upload result to db
+        const jsonData = await getJsonFromGemini(imageFile.path);
+        // detect text from uploaded image using vision api
+        // const receivedText = await detectText(imageFile.path);
 
         const response = await fetch(`${BACKEND_API_URL}/createRecord`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ data: receivedText }),
+            body: JSON.stringify({ data: jsonData }),
         });
         console.log(response.status, response.statusText);
 
-        return res.status(200).send({ message: 'File uploaded successfully!', text: receivedText });
+        return res.status(200).send({ message: 'ID data uploaded to database successfully!', data: jsonData });
         
     } catch (error) {
         console.error(error);
@@ -71,13 +71,6 @@ async function handlePostRequest(req, res) {
 }
 
 app.post('/detectText', upload.single('image'), handlePostRequest);
-//   (req,res) => {
-//     res.json({
-//       success: 1,
-//       profile_url: `http://localhost:3000/uploads/${req.file.filename}`
-//     });
-//   }
-//  );
 
 // Create a record
 app.post('/createRecord', async (req, res) => {

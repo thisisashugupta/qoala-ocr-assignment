@@ -22,70 +22,64 @@ async function detectText(imagePath) {
     }
 }
 
-function geminiOCRData(ocrData) {
-
-    // const geminiRequest = await fetch
-
-}
-
 function structureOCRData(ocrData) {
 
-    const aidata = {
-        "candidates": [
-          {
-            "content": {
-              "parts": [
-                {
-                  "text": "```\n{\n  \"Name\": \"Mr. Nadtapol\",\n  \"Last name\": \"Chanakun\",\n  \"Identification Number\": \"1 8199 00086 00 8\",\n  \"Date of Birth\": \"12 Dec. 1989\",\n  \"Date of Expiry\": \"11 Dec. 2024\",\n  \"Date of Issue\": \"8 Jan. 2016\"\n}\n```"
-                }
-              ],
-              "role": "model"
-            },
-            "finishReason": "STOP",
-            "index": 0,
-            "safetyRatings": [
-              {
-                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                "probability": "NEGLIGIBLE"
-              },
-              {
-                "category": "HARM_CATEGORY_HATE_SPEECH",
-                "probability": "NEGLIGIBLE"
-              },
-              {
-                "category": "HARM_CATEGORY_HARASSMENT",
-                "probability": "NEGLIGIBLE"
-              },
-              {
-                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                "probability": "NEGLIGIBLE"
-              }
-            ]
-          }
-        ],
-        "promptFeedback": {
-          "safetyRatings": [
-            {
-              "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-              "probability": "NEGLIGIBLE"
-            },
-            {
-              "category": "HARM_CATEGORY_HATE_SPEECH",
-              "probability": "NEGLIGIBLE"
-            },
-            {
-              "category": "HARM_CATEGORY_HARASSMENT",
-              "probability": "NEGLIGIBLE"
-            },
-            {
-              "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-              "probability": "NEGLIGIBLE"
-            }
-          ]
-        }
-      };
+    // const aidata = {
+    //     "candidates": [
+    //       {
+    //         "content": {
+    //           "parts": [
+    //             {
+    //               "text": "```\n{\n  \"Name\": \"Mr. Nadtapol\",\n  \"Last name\": \"Chanakun\",\n  \"Identification Number\": \"1 8199 00086 00 8\",\n  \"Date of Birth\": \"12 Dec. 1989\",\n  \"Date of Expiry\": \"11 Dec. 2024\",\n  \"Date of Issue\": \"8 Jan. 2016\"\n}\n```"
+    //             }
+    //           ],
+    //           "role": "model"
+    //         },
+    //         "finishReason": "STOP",
+    //         "index": 0,
+    //         "safetyRatings": [
+    //           {
+    //             "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+    //             "probability": "NEGLIGIBLE"
+    //           },
+    //           {
+    //             "category": "HARM_CATEGORY_HATE_SPEECH",
+    //             "probability": "NEGLIGIBLE"
+    //           },
+    //           {
+    //             "category": "HARM_CATEGORY_HARASSMENT",
+    //             "probability": "NEGLIGIBLE"
+    //           },
+    //           {
+    //             "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+    //             "probability": "NEGLIGIBLE"
+    //           }
+    //         ]
+    //       }
+    //     ],
+    //     "promptFeedback": {
+    //       "safetyRatings": [
+    //         {
+    //           "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+    //           "probability": "NEGLIGIBLE"
+    //         },
+    //         {
+    //           "category": "HARM_CATEGORY_HATE_SPEECH",
+    //           "probability": "NEGLIGIBLE"
+    //         },
+    //         {
+    //           "category": "HARM_CATEGORY_HARASSMENT",
+    //           "probability": "NEGLIGIBLE"
+    //         },
+    //         {
+    //           "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+    //           "probability": "NEGLIGIBLE"
+    //         }
+    //       ]
+    //     }
+    //   };
 
-      console.log("aidata", aidata.candidates[0].content.parts[0].text);
+    //   console.log("aidata", aidata.candidates[0].content.parts[0].text);
       
 
     const lines = ocrData.split('\n');
