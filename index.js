@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 import Card from'./models/ocr-data.js';
 dotenv.config();
 const PORT = process.env.PORT || 3000;
+const DATABASE_URL = process.env.MONGO_URI;
 
 // strict mode of mongodb is off
 mongoose.set("strictQuery", true);
@@ -173,7 +174,7 @@ app.get('*', (req, res) => {
 // connect to database
 async function connectDB() {
     try {
-      const conn = await mongoose.connect(process.env.MONGO_URI);
+      const conn = await mongoose.connect(DATABASE_URL);
       console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (err) {
       console.log(err);
