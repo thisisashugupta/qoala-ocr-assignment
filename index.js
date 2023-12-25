@@ -22,6 +22,7 @@ const storage = multer.diskStorage({
         console.log("uploadPath:", uploadPath);
         fs.mkdirSync(uploadPath, { recursive: true });
         cb(null, uploadPath);
+        console.log("file uploaded.");
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
@@ -174,7 +175,8 @@ app.get('*', (req, res) => {
 // connect to database
 async function connectDB() {
     try {
-      const conn = await mongoose.connect(DATABASE_URL);
+      const conn = await mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+      // const conn = await mongoose.connect(DATABASE_URL);
       console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (err) {
       console.log(err);

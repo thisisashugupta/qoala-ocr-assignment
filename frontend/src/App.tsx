@@ -1,11 +1,13 @@
 import {useState} from 'react';
 
+const BACKEND_URL = "https://qoala-ocr-assignment-production.up.railway.app";
+
 export default function App() {
 
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
   const [data, setData] = useState<string | null>(null);
-
+  
 
   const handleFileChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -20,7 +22,7 @@ export default function App() {
     formData.append("image", file);
 
     try {
-      const response = await fetch("http://localhost:3000/detectText", {
+      const response = await fetch(`${BACKEND_URL}/detectText`, {
         method: "POST",
         body: formData
       });
