@@ -67,6 +67,13 @@ async function handlePostRequest(req, res) {
 }
 
 app.post('/detectText', upload.single('image'), handlePostRequest);
+//   (req,res) => {
+//     res.json({
+//       success: 1,
+//       profile_url: `http://localhost:3000/uploads/${req.file.filename}`
+//     });
+//   }
+//  );
 
 // Create a record
 app.post('/createRecord', async (req, res) => {
