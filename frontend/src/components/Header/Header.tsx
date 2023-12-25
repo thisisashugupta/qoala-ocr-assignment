@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 export default function Header() {
     return (
     <div className="fixed left-0 top-0 flex w-full items-center justify-between px-16 border-b border-gray-300 py-4 bg-white">
-        <Link to="https://www.qoala.app/id-en" target='_blank'><img src="public/Qoala-logo.png" alt="Qoala" width={120}/></Link>
+        <Link to="https://www.qoala.app/id-en" target='_blank'><img src="/Qoala-logo.png" alt="Qoala" width={120}/></Link>
         <p className='font-thin text-xl'>OCR Assignment</p>
         <div className="inline-flex">
             <Link to="/">

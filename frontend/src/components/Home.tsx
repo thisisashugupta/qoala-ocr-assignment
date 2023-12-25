@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-const API_URL = "http://localhost:3000";
+const API_URL = "https://qoala-ocr-assignment-production.up.railway.app";
 
 const Home = () => {
   const [records, setRecords] = useState([]);
