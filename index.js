@@ -11,6 +11,7 @@ import Card from'./models/ocr-data.js';
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.MONGO_URI;
+const BACKEND_API_URL = process.env.BACKEND_URL;
 
 // strict mode of mongodb is off
 mongoose.set("strictQuery", true);
@@ -40,6 +41,7 @@ app.use(express.json());
 app.use(cors());
 
 async function handlePostRequest(req, res) {
+  console.log("handlePostRequest");
     try {
         const imageFile = req.file;
 
@@ -51,7 +53,7 @@ async function handlePostRequest(req, res) {
         const receivedText = await detectText(imageFile.path);
         // upload result to db
 
-        const response = await fetch('http://localhost:3000/createRecord', {
+        const response = await fetch(`${BACKEND_API_URL}/createRecord`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
