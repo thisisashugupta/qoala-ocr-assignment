@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
-const BACKEND_URL = "http://localhost:3000";
-// const BACKEND_URL = "https://qoala-ocr-assignment-production.up.railway.app";
+// const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://qoala-ocr-assignment-production.up.railway.app";
 
 export default function App() {
 
